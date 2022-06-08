@@ -65,9 +65,9 @@
   (if (not (s-blank? (indent-tools-current-line-indentation)))
       (progn
         (if (search-backward-regexp (concat "^"
-                                            (s-left (- (length (indent-tools-current-line-indentation))
-                                                       (indent-tools-indentation-of-current-mode))
-                                                    (indent-tools-current-line-indentation))
+                                            " \\{0,"
+                                            (number-to-string (- (length (indent-tools-current-line-indentation)) 1))
+                                            "\\}"
                                             indent-tools-node-regexp)
                                     nil t)
             (beginning-of-line-text)
@@ -78,9 +78,10 @@
   "Go down to the first child (line with greater indentation)."
   (interactive)
   (beginning-of-line-text)
+  (line-move 1)
   (unless (search-forward-regexp (concat "^"
                                      (indent-tools-current-line-indentation)
-                                     (s-repeat (indent-tools-indentation-of-current-mode) " ")
+                                     " +"
                                      indent-tools-node-regexp)
                              nil
                              t)
