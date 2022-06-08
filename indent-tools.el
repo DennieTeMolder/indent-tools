@@ -328,6 +328,8 @@ Simple stuff, since the comments hide us the indentation levels."
   ;; TODO not listed in description
   ("s" indent-tools-select)
   ("S" indent-tools-select-end-of-tree)
+  ("C-o" better-jumper-jump-backward)
+  ("<C-i>" better-jumper-jump-forward)
   ("z" recenter-top-bottom))
 
 (defalias 'hydra-indent-tools 'indent-tools-hydra)
