@@ -26,7 +26,7 @@
          yaml-indent-offset)))
 
 (defun indent-tools-indentation-of-json ()
-  "Rutern JSon's current indentation as an int."
+  "Return JSon's current indentation as an int."
   (if (boundp 'json-encoding-default-indentation)
     (length json-encoding-default-indentation)))
 
@@ -42,6 +42,12 @@
               (numberp web-mode-code-indent-offset))
          web-mode-code-indent-offset)))
 
+(defun indent-tools-indentation-of-ESS ()
+  "Return ESS's current indentation as an int."
+  (cond ((and (boundp 'ess-indent-offset)
+              (numberp ess-indent-offset))
+         ess-indent-offset)))
+
 ;; The alist.
 (setq indent-tools-indentation-of-modes-alist
       '(
@@ -50,6 +56,7 @@
         (jade-mode . indent-tools-indentation-of-jade)
         (web-mode . indent-tools-indentation-of-web-mode-code)
         (json-mode . indent-tools-indentation-of-json)
+        (ess-r-mode . indent-tools-indentation-of-ESS)
        ))
 
 (defun indent-tools-indentation-of-current-mode ()
