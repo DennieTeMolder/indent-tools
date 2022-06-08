@@ -291,41 +291,43 @@ Simple stuff, since the comments hide us the indentation levels."
 ;;;;;; General hydra
 (defhydra indent-tools-hydra (:color red :hint nil)
   "
- ^Indent^         | ^Navigation^        | ^Actions^
-------------------+---------------------+-----------
- _>_ indent       | _j_ v               | _K_ kill
- _<_ de-indent    | _k_ ʌ               | _i_ imenu
- _l_ end of level | _n_ next sibling    | _C_ Copy…
- _E_ end of fn    | _p_ previous sibling| _c_ comment
- _P_ paragraph    | _u_ up parent       | _U_ uncomment (paragraph)
- _SPC_ space      | _d_ down child      | _q_ quit
- ___ undo         | _e_ end of tree
+ ^Indent^         | ^Navigation^         | ^Actions^
+------------------+----------------------+---------------------------
+ _>_ indent       | _j_ v                | _i_ imenu
+ _<_ de-indent    | _k_ ʌ                | _d_ kill
+ _L_ end of level | _J_ next sibling     | _y_ Yank hydra show
+ _E_ end of fn    | _K_ previous sibling | _p_ paste
+ _P_ paragraph    | _h_ up parent        | _c_ comment
+ _SPC_ space      | _l_ down child       | _C_ uncomment (paragraph)
+ _u_ undo         | _e_ end of tree      | _q_ quit
 "
 
   (">" indent-tools-indent)
   ("<" indent-tools-demote)
+  ("L" indent-tools-indent-end-of-level)
   ("E" indent-tools-indent-end-of-defun)
-  ("c" indent-tools-comment)
-  ("U" indent-tools-uncomment)
   ("P" indent-tools-indent-paragraph)
-  ("l" indent-tools-indent-end-of-level)
-  ("K" indent-tools-kill-tree)
-  ("C" indent-tools-copy-hydra/body :color blue)
-  ("s" indent-tools-select)
-  ("e" indent-tools-goto-end-of-tree)
-  ("u" indent-tools-goto-parent)
-  ("d" indent-tools-goto-child)
-  ("S" indent-tools-select-end-of-tree)
-  ("n" indent-tools-goto-next-sibling)
-  ("p" indent-tools-goto-previous-sibling)
-  ("i" consult-imenu)
+  ("SPC" indent-tools-indent-space)
+  ("u" undo-fu-only-undo)
   ("j" forward-line)
   ("k" previous-line)
-  ("SPC" indent-tools-indent-space)
-  ("_" undo-tree-undo)
-  ("L" recenter-top-bottom)
+  ("J" indent-tools-goto-next-sibling)
+  ("K" indent-tools-goto-previous-sibling)
+  ("h" indent-tools-goto-parent)
+  ("l" indent-tools-goto-child)
+  ("e" indent-tools-goto-end-of-tree)
+  ("i" consult-imenu)
+  ("d" indent-tools-kill-tree)
+  ("y" indent-tools-copy-hydra/body :color blue)
+  ("p" yank)
+  ("c" indent-tools-comment)
+  ("C" indent-tools-uncomment)
   ("q" nil)
-  )
+  ;; TODO not listed in description
+  ("s" indent-tools-select)
+  ("S" indent-tools-select-end-of-tree)
+  ("z" recenter-top-bottom))
+
 (defalias 'hydra-indent-tools 'indent-tools-hydra)
 
 (defcustom indent-tools-keymap-prefix (kbd "C-c >")
