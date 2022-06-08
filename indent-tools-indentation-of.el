@@ -64,6 +64,9 @@
 Return an int (for python, it's usually 4)."
   (let ((mode-assoc (assoc major-mode indent-tools-indentation-of-modes-alist)))
     (cond (mode-assoc (funcall (cdr mode-assoc)))
+          ;; TODO safe value untill Elisp's hybrid indent is handled
+          ((memq major-mode '(emacs-lisp-mode lisp-interaction-mode))
+           1)
           ;; If the current mode is not recognised try to copy evil settings
           ((and (boundp 'evil-shift-width)
                 (numberp evil-shift-width))
