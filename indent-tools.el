@@ -318,7 +318,7 @@ Simple stuff, since the comments hide us the indentation levels."
   ("S" indent-tools-select-end-of-tree)
   ("n" indent-tools-goto-next-sibling)
   ("p" indent-tools-goto-previous-sibling)
-  ("i" helm-imenu)
+  ("i" consult-imenu)
   ("j" forward-line)
   ("k" previous-line)
   ("SPC" indent-tools-indent-space)
