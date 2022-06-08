@@ -4,9 +4,9 @@
 
 ;; Author: vindarel <vindarel@mailz.org>
 ;; URL: https://gitlab.com/emacs-stuff/indent-tools/
-;; Version: 0.1
-;; Keywords: indentation, movements, navigation, kill, fold, yaml, python
-;; Package-Requires: ((s "0") (hydra "0") (yafolding "0"))
+;; Version: 0.1.1
+;; Keywords: indentation, movements, navigation, kill, yaml, python
+;; Package-Requires: ((s "0") (hydra "0"))
 
 ;;; Commentary:
 
@@ -17,7 +17,6 @@
 (require 'indent-tools-indentation-of)
 
 (require 'hydra)
-(require 'yafolding)
 
 (defvar indent-tools-node-regexp "\"?[a-zA-Z0-9(\"'-.{]" "A regexp to match the beginning of a yaml node.  Should skip comments.") ;; Should be mode specific: skip comments, etc
 
@@ -299,8 +298,8 @@ Simple stuff, since the comments hide us the indentation levels."
  _l_ end of level | _n_ next sibling    | _C_ Copy…
  _E_ end of fn    | _p_ previous sibling| _c_ comment
  _P_ paragraph    | _u_ up parent       | _U_ uncomment (paragraph)
- _SPC_ space      | _d_ down child      | _f_ fold
- ___ undo         | _e_ end of tree     | _q_ quit
+ _SPC_ space      | _d_ down child      | _q_ quit
+ ___ undo         | _e_ end of tree
 "
 
   (">" indent-tools-indent)
@@ -325,7 +324,6 @@ Simple stuff, since the comments hide us the indentation levels."
   ("SPC" indent-tools-indent-space)
   ("_" undo-tree-undo)
   ("L" recenter-top-bottom)
-  ("f" yafolding-toggle-element)
   ("q" nil)
   )
 (defalias 'hydra-indent-tools 'indent-tools-hydra)
