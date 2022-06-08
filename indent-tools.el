@@ -295,7 +295,7 @@ Simple stuff, since the comments hide us the indentation levels."
 ------------------+----------------------+---------------------------
  _>_ indent       | _j_ v                | _i_ imenu
  _<_ de-indent    | _k_ ʌ                | _d_ kill
- _L_ end of level | _J_ next sibling     | _y_ Yank hydra show
+ _G_ end of level | _J_ next sibling     | _y_ Yank hydra show
  _E_ end of fn    | _K_ previous sibling | _p_ paste
  _P_ paragraph    | _h_ up parent        | _c_ comment
  _SPC_ space      | _l_ down child       | _C_ uncomment (paragraph)
@@ -304,7 +304,7 @@ Simple stuff, since the comments hide us the indentation levels."
 
   (">" indent-tools-indent)
   ("<" indent-tools-demote)
-  ("L" indent-tools-indent-end-of-level)
+  ("G" indent-tools-indent-end-of-level)
   ("E" indent-tools-indent-end-of-defun)
   ("P" indent-tools-indent-paragraph)
   ("SPC" indent-tools-indent-space)
@@ -314,7 +314,9 @@ Simple stuff, since the comments hide us the indentation levels."
   ("J" indent-tools-goto-next-sibling)
   ("K" indent-tools-goto-previous-sibling)
   ("h" indent-tools-goto-parent)
+  ("H" indent-tools-goto-parent)
   ("l" indent-tools-goto-child)
+  ("L" indent-tools-goto-child)
   ("e" indent-tools-goto-end-of-tree)
   ("i" consult-imenu)
   ("d" indent-tools-kill-tree)
