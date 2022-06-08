@@ -292,7 +292,7 @@ Simple stuff, since the comments hide us the indentation levels."
 (defhydra indent-tools-hydra (:color red :hint nil)
   "
  ^Indent^         | ^Navigation^         | ^Actions^
-------------------+----------------------+---------------------------
+----------------+--------------------+-------------------------
  _>_ indent       | _j_ v                | _i_ imenu
  _<_ de-indent    | _k_ ʌ                | _d_ kill
  _G_ end of level | _J_ next sibling     | _y_ Yank hydra show
