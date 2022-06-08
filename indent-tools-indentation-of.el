@@ -63,12 +63,14 @@
   "Get the current mode's indentation offset by calling the function associated to this mode in the alist `indent-tools-indentation-of-modes-alist'. If not found, return the default `standard-indent'.
 Return an int (for python, it's usually 4)."
   (let ((mode-assoc (assoc major-mode indent-tools-indentation-of-modes-alist)))
-    (if mode-assoc
-        (funcall (cdr mode-assoc))
-      ;; if we don't know this major mode, return a default.
-      indent-tools-indentation-offset)))
+    (cond (mode-assoc (funcall (cdr mode-assoc)))
+          ;; If the current mode is not recognised try to copy evil settings
+          ((and (boundp 'evil-shift-width)
+                (numberp evil-shift-width))
+           evil-shift-width)
+          ;; If all fails, return a default.
+          (t indent-tools-indentation-offset))))
 
 
 (provide 'indent-tools-indentation-of)
-
-;;; indent-tools-indentation-of ends here.
+;;; indent-tools-indentation-of.el ends here.
