@@ -78,7 +78,6 @@
   "Go down to the first child (line with greater indentation)."
   (interactive)
   (beginning-of-line-text)
-  (line-move 1)
   (unless (search-forward-regexp (concat "^"
                                      (indent-tools-current-line-indentation)
                                      " +"
