@@ -53,10 +53,9 @@
                  (string-equal (char-to-string (following-char)) " ")))
       (if (indent-tools--on-last-line)
           (setq last-line-reached t)
-        (next-line)))
+        (forward-line)))
     (unless last-line-reached (forward-line -1))
-    (end-of-line)
-    ))
+    (end-of-line)))
 
 (defun indent-tools-goto-parent ()
   "Go to this node's parent, one indentation level up."
@@ -97,8 +96,7 @@
     (goto-char beg)
     (push-mark)
     (activate-mark)
-    (goto-char end)
-    ))
+    (goto-char end)))
 
 (defun indent-tools-end-of-level () ;; OK needs more tests MORE TESTS PLZ
   "Go to the end of this indentation level."
@@ -142,8 +140,7 @@
     (goto-char beg)
     (push-mark)
     (activate-mark)
-    (goto-char end)
-    ))
+    (goto-char end)))
 
 (defun indent-tools-indent (&optional select)
   "Indent the current tree.
@@ -182,8 +179,7 @@
     (if (equal beg end)
         ;; case we're at the last defun or in __main__, not a defun.
         (setq end (point-max)))
-    (indent-rigidly beg end indentation-level)
-    ))
+    (indent-rigidly beg end indentation-level)))
 
 (defun indent-tools-indent-space ()
   "Indent with only a space (specially useful in jade-mode)."
@@ -360,7 +356,7 @@ Simple stuff, since the comments hide us the indentation levels."
     map)
   "Keymap for indent tools mode.")
 
-;;;###Autoload
+;;;###autoload
 (define-minor-mode indent-tools-minor-mode
   "Navigate, indent and act on blocks delemited by their indentation level.
 
@@ -368,8 +364,7 @@ Simple stuff, since the comments hide us the indentation levels."
   :global nil
   :keymap indent-tools-mode-map
   :group 'indent-tools
-  :require 'indent-tools
-  )
+  :require 'indent-tools)
 
 (provide 'indent-tools)
 ;;; indent-tools.el ends here
